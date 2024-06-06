@@ -14,33 +14,35 @@ public class ClienteResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void create(Cliente cliente) {
-        clienteRepository.Create(cliente);
-    }
+    @Produces(MediaType.APPLICATION_JSON)
+    public Cliente create(Cliente cliente) {
+    clienteRepository.create(cliente);
+    return cliente;
+}
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Cliente readById(@PathParam("id") int id) {
-        return clienteRepository.ReadById(id);
+        return clienteRepository.readById(id);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cliente> readAll() {
-        return clienteRepository.ReadAll();
+        return clienteRepository.readAll();
     }
 
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void updateById(Cliente cliente, @PathParam("id") int id) {
-        clienteRepository.UpdateById(cliente, id);
+        clienteRepository.updateById(cliente, id);
     }
 
     @DELETE
     @Path("{id}")
     public void deleteById(@PathParam("id") int id) {
-        clienteRepository.DeleteById(id);
+        clienteRepository.deleteById(id);
     }
 }
